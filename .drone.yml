@@ -7,11 +7,19 @@ trigger:
   - main
 
 steps:
+- name: download instruqt cli
+  image: alpine:3
+   commands:
+  - apk add curl unzip
+  - curl -sSL https://github.com/instruqt/cli/releases/download/2036-df08c03/instruqt-linux-2036-df08c03.zip -o instruqt.zip
+  - unzip instruqt.zip
+  - chmod +x ./instruqt
+
 - name: validate
   environment:
     INSTRUQT_TOKEN:
       from_secret: instruqt_token
-  image: instruqt/cli:2045-baf0e78
-  commands:
-  - instruqt track validate
+  image: alpine:3
+  - ./instruqt track validate
+
 
