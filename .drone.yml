@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  branch:
+  - main
+
+steps:
+- name: validate
+  environment:
+    INSTRUQT_TOKEN:
+      from_secret: instruqt_token
+  image: instruqt/cli:2045-baf0e78
+  commands:
+  - instruqt track validate
+

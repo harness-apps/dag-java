@@ -69,7 +69,7 @@ Password: ```demo@123```
 But for all the challenges we will be using the user `user-01`. The user by default will be configured with the following repositories,
 
 - <https://github.com/harness-apps/dag-stack>
-- <https://github.com/kameshsampath/drone-quickstart>
+- <https://github.com/harness-apps/dag-setup-verifier>
 - <https://github.com/harness-apps/quarkus-springboot-demo>
 - <https://github.com/harness-apps/quarkus-springboot-demo-gitops>
 
@@ -108,12 +108,12 @@ Listing the git remotes,
 git remote -v
 ```
 
-```text
+<pre>
 origin  ${GITEA_URL}/user-01/dag-stack.git (fetch)
 origin  ${GITEA_URL}/user-01/dag-stack.git (push)
 upstream        https://github.com/harness-apps/dag-stack.git (fetch)
 upstream        https://github.com/harness-apps/dag-stack.git (push)
-```
+</pre>
 
 Push the current "${DAG_TARGET_VERSION}" branch to `origin`
 
