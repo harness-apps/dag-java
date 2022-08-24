@@ -1,0 +1,36 @@
+kind: pipeline
+type: docker
+name: default
+
+trigger:
+  branch:
+  - main
+
+steps:
+- name: download instruqt cli
+  image: alpine:3
+  commands:
+  - apk add curl unzip
+  - curl -sSL https://github.com/instruqt/cli/releases/download/2036-df08c03/instruqt-linux-2036-df08c03.zip -o instruqt.zip
+  - unzip instruqt.zip
+  - chmod +x ./instruqt
+
+- name: validate track
+  environment:
+    INSTRUQT_TOKEN:
+      from_secret: instruqt_token
+  image: alpine:3
+  commands:
+  - ./instruqt track validate
+
+- name: push track
+  environment:
+    INSTRUQT_TOKEN:
+      from_secret: instruqt_token
+  image: alpine:3
+  commands:
+  - ./instruqt track push --force
+  when:
+    event:
+    - push
+
