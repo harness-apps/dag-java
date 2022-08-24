@@ -20,6 +20,7 @@ steps:
     INSTRUQT_TOKEN:
       from_secret: instruqt_token
   image: alpine:3
+  commands:
   - ./instruqt track validate
 
 
