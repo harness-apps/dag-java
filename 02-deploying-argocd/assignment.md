@@ -109,13 +109,12 @@ Environment Variables
 
 Few environment variables that use to bootstrap as shown below, they are already set in your shell via `$DAG_HOME/.envrc`,
 
-```shell
-export GITEA_DOMAIN="kubernetes-vm.${DAG_BASE_DOMAIN}"
+<pre>export GITEA_DOMAIN="kubernetes-vm.${DAG_BASE_DOMAIN}"
 export GITEA_URL="http://${GITEA_DOMAIN}:30950"
 export DRONE_SERVER_HOST="kubernetes-vm.$DAG_BASE_DOMAIN:30980"
 export DRONE_SERVER_URL="http://${DRONE_SERVER_HOST}"
 export GITEA_USER=user-01
-```
+</pre>
 
 Create Argo Apps
 ----------------
@@ -238,9 +237,7 @@ drone info --format "Admin: {{ .Admin }}"
 
 The command should show an output like,
 
-```shell
-Admin: true
-```
+<pre>Admin: true</pre>
 
 🏁 Finish
 =========
