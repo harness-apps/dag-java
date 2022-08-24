@@ -29,6 +29,7 @@ steps:
       from_secret: instruqt_token
   image: alpine:3
   commands:
+  - ./instruqt update
   - ./instruqt track push --force
   when:
     event:
