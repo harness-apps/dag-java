@@ -194,7 +194,7 @@ Check the build status in the Drone Dashboard,
 
 Few applications that you can try with this stack,
 
-- <https://github.com/kameshsampath/quarkus-springboot-demo-gitops>
-- MERNStack
+- <https://github.com/harness-apps/quarkus-springboot-demo-gitops>
+- <https://github.com/harness-apps/MERN-Stack-Example>
 
 To complete this challenge, press **Check**.

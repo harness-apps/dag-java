@@ -80,7 +80,7 @@ mkdir -p "$HOME/repos"
 echo 'export GIT_REPOS_HOME="$HOME/repos"' >> /root/.bashrc
 
 cd "$HOME/repos" || true
-git clone https://github.com/kameshsampath/dag-stack.git && \
+git clone https://github.com/harness-apps/dag-stack.git && \
   cd "$(basename "$_" .git)" || true
 
 git checkout -b instruqt origin/instruqt
