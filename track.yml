@@ -1,0 +1,26 @@
+slug: dag-java
+id: bhbiufqubdc7
+type: track
+title: Java GitOps
+teaser: How to get started with GitOps with Drone,Argo and Gitea
+description: |-
+  **TODO**: Description will be updated, its just a placeholder
+  A demo to demonstrate on how to setup [Drone](https://drone.io), [Argo CD](https://argo-cd.readthedocs.io/) and [Gitea](https://gitea.io/) with [kind](https://kind.sigs.k8s.io/) as your local Kubernetes Cluster.
+
+  This demo also shows how to use the Argo CD [declarative setup](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/) to setup [Drone](https://drone.io) with Drone Kubernetes runner.
+
+  The stack also deploys [Argo CD Image Updater](https://argocd-image-updater.readthedocs.io/en/stable) to enable updating the application images via GitOps.
+icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
+tags:
+- ci
+- drone
+- argocd
+- gitops
+- java
+owner: harness
+developers:
+- kamesh.sampath@harness.io
+private: true
+published: true
+skipping_enabled: true
+checksum: "4834129364682918648"

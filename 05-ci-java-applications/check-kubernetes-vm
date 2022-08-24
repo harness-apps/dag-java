@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+cd "$GIT_REPOS_HOME/quarkus-springboot-demo"
+
+direnv allow .
+
+# login to docker private registry 
+( echo -n "admin123" | docker login localhost:31081 --username admin --password-stdin ) || fail-message "unable to login to Docker registry"
+
+# Kubectl
+kubectl create ns test || true
+
+(kubectl create deployment -n test qsbd-demo --image="${REGISTRY_NAME}/example/quarkus-springboot-demo";
+kubectl rollout status -n test deployment.apps/qsbd-demo --timeout=30s) || fail-message "I expect the application deployment to succeed"
+
+kubectl delete -n test deployment.apps/qsbd-demo

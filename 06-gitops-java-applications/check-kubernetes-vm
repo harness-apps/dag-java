@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+direnv allow .
+
+kubectl rollout status -n demo-apps deployment.apps/postgresql --timeout=30s || fail-message "I expect the postgresql application deployment to succeed"
+
+kubectl rollout status -n demo-apps deployment.apps/fruits-api --timeout=30s || fail-message "I expect the fruits-api application deployment to succeed"
+
+latest_digest=$(~/go/bin/crane digest --insecure localhost:31081/example/quarkus-springboot-demo)
+
+applied_digest=$(kubectl get deploy -ndemo-apps  fruits-api -ojsonpath='{.spec.template.spec.containers[0].image}' | cut -d '@' -f2)
+
+if [ "$latest_digest" != "$applied_digest" ];
+then
+	fail-message "Latest and applied digest are not same"
+fi
+
+exit 0

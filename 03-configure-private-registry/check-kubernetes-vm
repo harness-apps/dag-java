@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+direnv allow .
+
+# login to docker private registry 
+( echo -n "${IMAGE_REGISTRY_PASSWORD}" | docker login localhost:31081 --username "${IMAGE_REGISTRY_USER}" --password-stdin ) || fail-message "unable to login to Docker registry"
+
+# Docker push
+(docker pull gcr.io/google-samples/hello-app:1.0;docker tag gcr.io/google-samples/hello-app:1.0 "localhost:31081/hello-app:1.0";docker push "localhost:31081/hello-app:1.0") || fail-message "Unable to push image to the private registry"
+
+# Kubectl
+(kubectl create deployment hello-server --image="nexus.infra.svc.cluster.local/hello-app:1.0";
+kubectl rollout status deployment.apps/hello-server --timeout=30s) || fail-message "I expect the application deployment to succeed"
+
+
+kubectl delete deployment.apps/hello-server

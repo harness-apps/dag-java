@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+direnv allow .
+
+printf "\nUsing %s as the working directory for solving 'deploy-private-registry' challenge\n" "${DAG_HOME}"
+
+cd "$DAG_HOME"
+
+envsubst < "$DAG_HOME/config/etc/rancher/k3s/registries.yaml" | tee /etc/rancher/k3s/registries.yaml
+
+systemctl restart k3s
+
+# some slack for all pods to come up
+sleep 10

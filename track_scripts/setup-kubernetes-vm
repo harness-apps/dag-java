@@ -1,0 +1,107 @@
+#!/bin/bash 
+
+set -euxo pipefail
+
+# Wait for the Instruqt host bootstrap to finish
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]
+do
+    sleep 1
+done
+
+# # Wait for the Kubernetes API server to become available
+while ! curl --silent --fail --output /dev/null http://localhost:8001/api 
+do
+    sleep 1 
+done
+
+apt-get update
+
+# # Enable bash completion for kubectl
+curl https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases -o /root/.kubectl_aliases
+
+printf "source /usr/share/bash-completion/bash_completion\ncomplete -F __start_kubectl k\nexport do=('--dry-run=client' '-o' 'yaml')\n[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases\n" >> /root/.bashrc
+
+## direnv
+apt install direnv
+direnv --version
+echo 'eval "$(direnv hook bash)"' >> /root/.bashrc
+
+# Argo CD CLI 
+
+curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+chmod +x /usr/local/bin/argocd
+
+# crane
+go install github.com/google/go-containerregistry/cmd/crane@latest
+
+# Drone CLI
+curl -L https://github.com/harness/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz | tar zx
+install -t /usr/local/bin drone
+
+## install podman cli and net tools
+apt install -y podman-docker net-tools
+
+# Add insecure registry, it will by default add the registry
+# that will be configured via private registry challenge
+cat > /etc/containers/registries.conf.d/myregistry.conf <<EOF
+[[registry]]
+location = "localhost:31081"
+insecure = true
+
+EOF
+# superess Docker CLI using podman message
+touch /etc/containers/nodocker
+
+## envsubst
+envsubst --version
+
+# httpie
+# apt install -y httpie
+snap install httpie
+
+# kustomize
+snap install kustomize
+
+# kubens + kubectx
+snap install --classic kubectx
+
+# jq
+snap install jq
+
+# starship
+snap install starship
+
+echo 'eval "$(starship init bash)"' >> /root/.bashrc
+
+# yq
+snap install yq
+
+mkdir -p "$HOME/repos"
+echo 'export GIT_REPOS_HOME="$HOME/repos"' >> /root/.bashrc
+
+cd "$HOME/repos" || true
+git clone https://github.com/kameshsampath/dag-stack.git && \
+  cd "$(basename "$_" .git)" || true
+
+git checkout -b instruqt origin/instruqt
+
+direnv allow .
+
+#git config
+# GITEA_USER='user-01'
+# GITEA_USER_PASSWORD='user-01%40123'
+# GITEA_DOMAIN="kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950"
+git config --global user.name 'user-01'
+git config --global user.email 'user-01@example.com'
+# git config credential.helper store
+
+# repos=("dag-stack.git" "quarkus-springboot-demo.git" "quarkus-springboot-demo-gitops.git" "dag-setup-verifier.git" )
+
+# echo '' > ~/.git-credentials
+
+# for r in "${repos[@]}"
+# do
+# 	printf 'http://%s:%s@%s/%s\n' "${GITEA_USER}" "${GITEA_USER_PASSWORD}" "${GITEA_DOMAIN}" "$r" >> ~/.git-credentials
+# done
+
+set-workdir "$PWD"

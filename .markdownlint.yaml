@@ -1,0 +1,7 @@
+line-length: false
+no-duplicate-header: false
+single-h1: false
+header-style:
+  style: setext_with_atx_closed
+heading-style:
+  style: setext_with_atx_closed

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+direnv allow .
+
+# login to docker private registry 
+( echo -n "admin123" | docker login localhost:31081 --username admin --password-stdin ) || fail-message "unable to login to Docker registry"
+
+# Kubectl
+(kubectl create deployment dag-setup-verifier --image="nexus.infra.svc.cluster.local/example/dag-setup-verifier";
+kubectl rollout status deployment.apps/dag-setup-verifier --timeout=30s) || fail-message "I expect the application deployment to succeed"
+
+
+kubectl delete deployment.apps/dag-setup-verifier

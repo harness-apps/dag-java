@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+eval "$(direnv export bash)"
+
+set -euxo pipefail
+
+cd "$GIT_REPOS_HOME/quarkus-springboot-demo"
+
+direnv allow .
+
+echo "This is the solve script"
+
+exit 0
