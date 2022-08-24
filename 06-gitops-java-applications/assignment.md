@@ -131,11 +131,10 @@ kubectl get pods -n demo-apps
 
 The command should show an output like,
 
-```shell
-NAME                          READY   STATUS    RESTARTS   AGE
+<pre>NAME                          READY   STATUS    RESTARTS   AGE
 fruits-api-55dcf4f9d7-sgwrq   1/1     Running   0          3m41s
 postgresql-75979fccb6-gqkwf   1/1     Running   0          3m41s
-```
+</pre>
 
 Let us check the services,
 
@@ -145,11 +144,10 @@ kubectl get svc -n demo-apps
 
 The command should show an output like,
 
-```shell
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+<pre>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 fruits-api   ClusterIP   10.43.147.230   <none>        8080/TCP         4m51s
 postgresql   NodePort    10.43.7.161     <none>        5432:32416/TCP   4m51s
-```
+</pre>
 
 Let port-forward the service `fruits-api` allowing us to access the service from the CLI,
 
@@ -165,8 +163,7 @@ http :8080/
 
 The command should return a response like,
 
-```shell
-HTTP/1.1 200
+<pre>HTTP/1.1 200
 Connection: keep-alive
 Content-Length: 35
 Content-Type: text/plain;charset=UTF-8
@@ -174,7 +171,7 @@ Date: Mon, 22 Aug 2022 09:06:15 GMT
 Keep-Alive: timeout=60
 
 Hello from Captain Canary!!🐥🚀
-```
+</pre>
 
 Run the following command and make a note of the image **sha256** digest,
 
@@ -187,7 +184,7 @@ kubectl get deploy -ndemo-apps  fruits-api -ojsonpath='{.spec.template.spec.cont
 Updating Application
 --------------------
 
-Using the tab **Java App**, edit the application source `${QSBD_GIT_REPO}/src/main/java/com/example/hellospringboot/GreeterController.java` and update the class to as shown,
+Using the tab **Java**, edit the application source `${QSBD_GIT_REPO}/src/main/java/com/example/hellospringboot/GreeterController.java` and update the class to as shown,
 
 ```java
 package com.example.hellospringboot;
