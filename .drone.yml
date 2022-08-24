@@ -14,6 +14,7 @@ steps:
   - curl -sSL https://github.com/instruqt/cli/releases/download/2036-df08c03/instruqt-linux-2036-df08c03.zip -o instruqt.zip
   - unzip instruqt.zip
   - chmod +x ./instruqt
+  - ./instruqt update
 
 - name: validate track
   environment:
@@ -29,7 +30,6 @@ steps:
       from_secret: instruqt_token
   image: alpine:3
   commands:
-  - ./instruqt update
   - ./instruqt track push --force
   when:
     event:
