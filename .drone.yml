@@ -9,7 +9,7 @@ trigger:
 steps:
 - name: download instruqt cli
   image: alpine:3
-   commands:
+  commands:
   - apk add curl unzip
   - curl -sSL https://github.com/instruqt/cli/releases/download/2036-df08c03/instruqt-linux-2036-df08c03.zip -o instruqt.zip
   - unzip instruqt.zip
