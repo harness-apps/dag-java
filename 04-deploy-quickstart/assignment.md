@@ -49,12 +49,17 @@ difficulty: basic
 timelimit: 28800
 ---
 
-Deploy Drone Quickstart App
-===========================
+🚀 Introduction
+===============
 
-Activating a repo in drone makes Drone to run the CI on the git project on git events.
+In this step we will write a Drone pipeline for an applicaiton that will verify that all required components are working.
 
-To activate the `dag-setup-verifier` repo in drone, run the following command
+☑️ Prepare `dag-setup-verifier` repository
+=======================================
+
+Activating a repo in Drone creates a webhook in the Gitea repository that sends events to Drone.
+
+To activate the `dag-setup-verifier` repo, run the following command:
 
 ```shell
 drone repo enable user-01/dag-setup-verifier
@@ -99,12 +104,54 @@ Ensure our drone token works,
 drone info
 ```
 
+Retrieve the Kubernetes cluster nameserver
+------------------------------------------
+
+Since NXRM is running inside the Kubernetes cluster behind a service, the Kubernetes nameserver needs to be passed to the Drone Docker plugin when building the container.
+
+Retrieve the `/etc/resolv.conf` file from a temporary pod by running this command:
+
+```shell
+kubectl run -i --tty busybox --image=busybox --restart=Never -- cat /etc/resolv.conf
+```
+
+You should see output similar to this:
+
+<pre>
+search default.svc.cluster.local svc.cluster.local cluster.local pguvupthd4vq.svc.cluster.local c.instruqt-prod.internal google.internal
+nameserver 10.43.0.10
+options ndots:5
+</pre>
+
+Here, `10.43.0.10` is the nameserver.
+
+Retrieve the MTU for the virtual machine network
+------------------------------------------------
+
+Depending on how your Kubernetes cluster in the VM has been configured, the MTU (Maximum Transmission Unit) might be different. When creating temporary Docker networks in Kubernetes pods (which we are about to do when we build our container), this value must be the same or smaller as the host.
+
+Retrieve the MTU value with this command
+
+```shell
+ifconfig | grep cni
+```
+
+The command should show an output like:
+
+```shell
+cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
+```
+
+Update the value as per the `mtu` value shown in the output of the command.
+
+Also verify that the IP in `custom_dns` matches the nameserver retrieved in the previous step. Notice that `8.8.8.8` (a DNS server from Google) is also passed to `custom_dns`. This is required since the Docker build process needs to resolve external DNS entries as well.
+
 Edit `.drone.yml` using the **Code** tab, ensure that `.drone.yml` updated to be like,
 
 ```yaml
 ---
 kind: pipeline
-type: kubernetes
+type: docker
 name: default
 
 # update this if you want to do arm64 build
@@ -126,61 +173,50 @@ steps:
       tags: "latest"
       dockerfile: docker/Dockerfile.linux.arm64
       insecure: true
+
+      # verify these two values
+      custom_dns: "10.43.0.10,8.8.8.8"
       mtu: 1410
+
       build_args:
         - "MAVEN_REPOS=nexus=http://nexus.infra:8081/repository/maven-public/"
+      registry: nexus.infra.svc.cluster.local
+      repo: nexus.infra.svc.cluster.local/example/dag-setup-verifier
       username:
         from_secret: image_registry_user
       password:
         from_secret: image_registry_password
-      registry:
-        from_secret: image_registry
-      repo:
-        from_secret: destination_image
 ```
 
-Add Secrets to Drone Repository
--------------------------------
+Add Secrets
+-----------
 
-As you notice we have `from_secrets` attributes in the `.drone.yml`.  Those are loaded using `drone_secrets`.
+As you notice we have `from_secrets` attributes in the `.drone.yml`.
 
-Drone secrets are added using the `drone secret add` command, for e.g. to add the secret called `destination_image`,
+Drone supports multiple methods of managing secrets. Here we will use `drone encrypt` to encrypt strings and add them directly to the `.drone.yml` file.
 
 ```shell
-drone secret add --name destination_image --data "${REGISTRY_NAME}/example/dag-setup-verifier" "${DRONE_GIT_REPO}"
+./scripts/add-secrets.sh >> .drone.yml
 ```
 
-Run the following commands to add other secrets to the `dag-setup-verifier` repo,
+The `.drone.yml` file should now have two secrets that look like this:
+
+<pre>
+---
+kind: secret
+name: image_registry_user
+data: jK/T9GzbNyxFmjlZhB/pgb6Kykm/ynGah4IPRXJTGn5w
+
+---
+kind: secret
+name: image_registry_password
+data: 1OaeL3iqFVv2nEM5v8dNWux+eTXwjanbB5A60g4lq18uQJ61
+</pre>
+
+Commit and push the code to see the build trigger
 
 ```shell
-
-drone secret add --name image_registry --data "${REGISTRY_NAME}" "${DRONE_GIT_REPO}"
-
-drone secret add --name image_registry_user --data "${IMAGE_REGISTRY_USER}" "${DRONE_GIT_REPO}"
-
-drone secret add --name image_registry_password --data "${IMAGE_REGISTRY_PASSWORD}" "${DRONE_GIT_REPO}"
-```
-
-> **TIP**: You can also use the scripts from `$DAG_HOME/work/dag-setup-verifier/scripts/add-secrets.sh`.
-
-Make sure the `mtu` value for the Docker plugin is set to right value in as per the environment,
-
-```shell
-ifconfig | grep cni
-```
-
-The command should show an output like,
-
-```shell
-cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
-```
-
-Update the value as per the `mtu` value shown in the output of the command.
-
-Commit and push the code to see the build trigger,
-
-```shell
-git commit --allow-empty -m "Verify Setup" -m "Verify Setup"
+git commit --allow-empty -m "Verify Setup"
 git push origin instruqt
 ```
 

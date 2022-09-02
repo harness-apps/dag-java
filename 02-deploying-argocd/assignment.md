@@ -62,19 +62,10 @@ The core idea of GitOps is having a Git repository that always contains declarat
 
 As part of this workshop we will be using [Argo CD](https://argo-cd.readthedocs.io/en/stable/user-guide/projects/) as our GitOps platform.
 
-Ensure Environment
-===================
-
-Ensure all required environment variables are set,
-
-```shell
-direnv allow .
-```
-
 🐙 Deploy Argo CD
 =================
 
-Add Argo CD helm charts,
+Add Argo CD helm charts
 
 ```shell
 helm repo add argo https://argoproj.github.io/argo-helm

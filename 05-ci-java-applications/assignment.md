@@ -126,7 +126,7 @@ drone repo enable "${QSBD_GIT_REPO}"
 Add Secrets to Drone Repository
 -------------------------------
 
-The application build uses few secrets namely,
+Here we will use `drone secret add` to create secrets that are attached to the `quarkus-springboot-demo` repository in Drone.
 
 - `maven_mirror_url` : The maven mirror to used by Apache Maven builder to download the artifacts.
 - `destination_image`: The container image name. Default to `${REGISTRY_NAME}/example/quarkus-springboot-demo`.

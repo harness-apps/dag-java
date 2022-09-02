@@ -240,10 +240,10 @@ You can also verify the image and its digests using the **Nexus Repository Manag
 As part of the rollout the earlier port-forward would have been killed. Let us do the port-forward again to the service `fruits-api`,
 
 ```shell
-kubectl port-forward -n demo-apps svc/fruits-api 8080:8080 &
+kubectl port-forward -n demo-apps svc/fruits-api 8081:8080 &
 ```
 
-Now try the same `http :8080/` request and you will see the following output,
+Now try the `http :8081/` request and you will see the following output,
 
 ```shell
 HTTP/1.1 200

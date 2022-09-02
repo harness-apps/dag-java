@@ -33,23 +33,17 @@ difficulty: basic
 timelimit: 600
 ---
 
-👋 Introduction
-===============
+🔧 Install Gitea
+================
 
-Ensure all required environment variables are set,
-
-```shell
-direnv allow .
-```
-
-Add Gitea helm charts,
+Add Gitea helm charts
 
 ```shell
 helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo update
 ```
 
-Use the helm to deploy Gitea:
+Use the helm to deploy Gitea
 
 ```shell
 envsubst < "$DAG_HOME/helm_vars/gitea/values.yaml" | helm upgrade \
@@ -58,29 +52,24 @@ envsubst < "$DAG_HOME/helm_vars/gitea/values.yaml" | helm upgrade \
   --wait
 ```
 
-👤 Add Gitea Users
-==================
+👤 Add Gitea User
+=================
 
-Gitea is configured with a default admin,
-
-Username: ```demo```
-Password: ```demo@123```
-
-But for all the challenges we will be using the user `user-01`. The user by default will be configured with the following repositories,
+For all the challenges we will be using the Gitea user `user-01`. The user by default will be configured with the following repositories:
 
 - <https://github.com/harness-apps/dag-stack>
 - <https://github.com/harness-apps/dag-setup-verifier>
 - <https://github.com/harness-apps/quarkus-springboot-demo>
 - <https://github.com/harness-apps/quarkus-springboot-demo-gitops>
 
-Run the following command to create `user-01` and configure the user with the repositories listed above.
+Run the following command to create `user-01` and configure the user with the repositories listed above
 
 ```shell
 kustomize build "$DAG_HOME/k8s/gitea-config" \
   | envsubst | kubectl apply -f -
 ```
 
-Wait for the job to complete before proceeding further,
+Wait for the job to complete before proceeding further
 
 ```shell
 kubectl wait --for=condition=complete --timeout=120s -n drone job/workshop-setup
@@ -89,6 +78,11 @@ kubectl wait --for=condition=complete --timeout=120s -n drone job/workshop-setup
 Now you can login to Gitea using Gitea tab using the user `user-01` and password `user-01@123`,
 
 ![Gitea Dashboard](../assets/gitea-user-dashboard.png)
+
+✏️ Rename `dag-stack` remote
+===========================
+
+Your shell is currently in the `dag-stack` repository that was cloned from GitHub when this virtual machine was launched. To push changes to the copy of the repository in Gitea, the remote URL needs to be changed.
 
 Rename the existing remote to be `upstream`
 
@@ -99,7 +93,7 @@ git remote rename origin upstream
 Add new remote to called `origin` to with url set to `${GITEA_URL}/user-01/dag-stack.git`
 
 ```shell
-git remote add origin "${GITEA_DAG_REPO}"
+git remote add origin "${GITEA_URL}/user-01/dag-stack.git"
 ```
 
 Listing the git remotes,
