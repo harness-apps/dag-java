@@ -104,8 +104,8 @@ Ensure our drone token works,
 drone info
 ```
 
-Retrieve the Kubernetes cluster nameserver
-------------------------------------------
+Kubernetes nameserver
+=====================
 
 Since NXRM is running inside the Kubernetes cluster behind a service, the Kubernetes nameserver needs to be passed to the Drone Docker plugin when building the container.
 
@@ -125,10 +125,10 @@ options ndots:5
 
 Here, `10.43.0.10` is the nameserver.
 
-Retrieve the MTU for the virtual machine network
-------------------------------------------------
+Network MTU
+===========
 
-Depending on how your Kubernetes cluster in the VM has been configured, the MTU (Maximum Transmission Unit) might be different. When creating temporary Docker networks in Kubernetes pods (which we are about to do when we build our container), this value must be the same or smaller as the host.
+Depending on how your Kubernetes cluster in the VM has been configured, the MTU (Maximum Transmission Unit) might be different. When creating temporary Docker networks in Kubernetes pods (which we are about to do when we build our container), this value must be the same as or smaller than the host.
 
 Retrieve the MTU value with this command
 
@@ -196,13 +196,12 @@ As you notice we have `from_secrets` attributes in the `.drone.yml`.
 Drone supports multiple methods of managing secrets. Here we will use `drone encrypt` to encrypt strings and add them directly to the `.drone.yml` file.
 
 ```shell
-./scripts/add-secrets.sh >> .drone.yml
+./scripts/add-secrets.sh | tee -a .drone.yml
 ```
 
-The `.drone.yml` file should now have two secrets that look like this:
+You should see output similar to this:
 
-<pre>
----
+<pre>---
 kind: secret
 name: image_registry_user
 data: jK/T9GzbNyxFmjlZhB/pgb6Kykm/ynGah4IPRXJTGn5w
@@ -216,7 +215,8 @@ data: 1OaeL3iqFVv2nEM5v8dNWux+eTXwjanbB5A60g4lq18uQJ61
 Commit and push the code to see the build trigger
 
 ```shell
-git commit --allow-empty -m "Verify Setup"
+git add .drone.yml
+git commit -m "Verify Setup"
 git push origin instruqt
 ```
 

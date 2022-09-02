@@ -33,6 +33,11 @@ difficulty: basic
 timelimit: 600
 ---
 
+👋 Introduction
+===============
+
+Our first step in our GitOps journey is to find a place to host our Git repositories. In this track we will use Gitea, since we can run it locally in the Kubernetes cluster and customize it as needed.
+
 🔧 Install Gitea
 ================
 
@@ -79,7 +84,7 @@ Now you can login to Gitea using Gitea tab using the user `user-01` and password
 
 ![Gitea Dashboard](../assets/gitea-user-dashboard.png)
 
-✏️ Rename `dag-stack` remote
+✏️ Rename dag-stack repository remote
 ===========================
 
 Your shell is currently in the `dag-stack` repository that was cloned from GitHub when this virtual machine was launched. To push changes to the copy of the repository in Gitea, the remote URL needs to be changed.
