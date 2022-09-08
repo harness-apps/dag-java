@@ -19,17 +19,17 @@ tabs:
 - title: Gitea
   type: website
   path: /
-  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950
+  url: http://gitea.kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950
   new_window: true
 - title: Argo CD
   type: website
   path: /
-  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30080
+  url: http://argocd.kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30080
   new_window: true
 - title: Drone
   type: website
   path: /
-  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30980
+  url: http://drone.kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30980
   new_window: true
 - title: Terminal 2
   type: terminal
