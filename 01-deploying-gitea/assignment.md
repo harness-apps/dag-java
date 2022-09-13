@@ -24,7 +24,7 @@ tabs:
 - title: Gitea
   type: website
   path: /
-  url: http://gitea.kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950
+  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950
   new_window: true
 - title: Terminal 2
   type: terminal
