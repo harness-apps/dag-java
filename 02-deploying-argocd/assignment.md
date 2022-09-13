@@ -150,8 +150,8 @@ A successful Argo CD deployment of apps should look as shown below,
 
 ![ArgoCD Apps](../assets/dag_apps.png)
 
-Validate Drone Setup
---------------------
+✅ Validate Drone Setup
+=======================
 
 What we have done until now,
 

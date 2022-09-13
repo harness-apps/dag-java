@@ -166,9 +166,8 @@ ifconfig | grep cni
 
 The command should show an output like,
 
-```shell
-cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
-```
+<pre>cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
+</pre>
 
 Update the value as per the `mtu` value shown in the output of the command. In the output above the `mtu` value is `1410`.
 
@@ -184,7 +183,7 @@ git push origin "${QSBD_GIT_REV}"
 
 > **NOTE**: If you see message _nothing to commit, working tree clean_, you can trigger a build with empty commit like:
 >```shell
-> git commit --allow-empty -m "Init Pipeline" -m "Init Pipeline"
+> git commit --allow-empty -m "Init Pipeline"
 >```
 
 The git **push** event will trigger a build on Drone. Open the **Drone** tab and navigate to `quarkus-springboot-demo` to see the build running.
@@ -195,7 +194,7 @@ The git **push** event will trigger a build on Drone. Open the **Drone** tab and
 > The first build will take some time during java-build step as Apache Maven need to > download the artifacts from Maven Central and cache them on to the local Nexus Repository Manager.
 >
 >
-> **TIP**: To test triggers you can also use git command like `git commit --allow-empty -m "Test Trigger" -m "Test Trigger"`
+> **TIP**: To test triggers you can also use git command like `git commit --allow-empty -m "Test Trigger"`
 
 🏁 Finish
 =========

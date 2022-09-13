@@ -138,9 +138,8 @@ ifconfig | grep cni
 
 The command should show an output like:
 
-```shell
-cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
-```
+<pre>cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
+</pre>
 
 Update the value as per the `mtu` value shown in the output of the command.
 
