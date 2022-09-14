@@ -11,7 +11,7 @@ notes:
 
     ## Objectives
 
-    In this track, this is what you'll learn:
+    In this challenge, this is what you'll learn:
     - Deploy Argo CD on Kubernetes
     - Expose the Argo CD deployment with a NodePort service
     - View the exposed `argocd-server` service in your browser
@@ -162,8 +162,9 @@ What we have done until now,
 - Setup Gitea
 - Setup `dag-apps` Argo CD that in turn setup
   - Drone Server
-  - Drone Kube Runner
   - Drone Docker Runner
+  - Nexus Registry
+  - Argo CD Image Updater
 
 Add Drone Admin User
 --------------------

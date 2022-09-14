@@ -11,7 +11,7 @@ notes:
 
     ## Objectives
 
-    In this track, this is what you'll learn:
+    In this challenge, this is what you'll learn:
     - Create a Drone pipeline to build and push a Docker image to the registry
 
     ## Duration
