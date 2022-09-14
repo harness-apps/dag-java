@@ -12,11 +12,16 @@ notes:
 
     ## Objectives
 
-    In this track, this is what you'll learn:
+    In this challenge, this is what you'll learn:
     - Deploy Gitea on Kubernetes
     - Expose the deployment with a NodePort service
-    - View the exposed `gitea-http` service through a tab in Instruqt
+    - View the exposed `gitea-http` service in your browser
     - Explore the Gitea dashboard
+
+    ## Duration
+
+    ~15 minutes
+    
 tabs:
 - title: Terminal 1
   type: terminal

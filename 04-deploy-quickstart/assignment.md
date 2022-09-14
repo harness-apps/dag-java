@@ -2,8 +2,8 @@
 slug: deploy-quickstart
 id: n2hcmvjjypfh
 type: challenge
-title: Deploy Drone Quickstart
-teaser: Deploy drone quickstart application and verify the setup works as expected.
+title: Build Drone CI Pipeline
+teaser: Build an application and verify the setup works as expected.
 notes:
 - type: text
   contents: |-
@@ -12,9 +12,12 @@ notes:
     ## Objectives
 
     In this track, this is what you'll learn:
-    - Deploy a Drone Quickstart application
-    - Ensure we are able to build and push the application into Image registry
-    - Try deploying the application using Argo CD
+    - Create a Drone pipeline to build and push a Docker image to the registry
+
+    ## Duration
+
+    ~30 minutes
+
 tabs:
 - title: Terminal 1
   type: terminal
@@ -173,7 +176,7 @@ steps:
       dockerfile: docker/Dockerfile.linux.arm64
       insecure: true
 
-      # verify these two values
+      # verify these values
       custom_dns: "10.43.0.10,8.8.8.8"
       mtu: 1410
 
