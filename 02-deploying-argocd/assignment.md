@@ -14,11 +14,15 @@ notes:
     In this track, this is what you'll learn:
     - Deploy Argo CD on Kubernetes
     - Expose the Argo CD deployment with a NodePort service
-    - View the exposed `argocd-server` service through a tab in Instruqt
-    - Create Drone Server using Argo CD App of Apps
+    - View the exposed `argocd-server` service in your browser
+    - Create Drone Server using the Argo CD "App of Apps" method
     - Expose the Drone CI deployment with a NodePort service
-    - View the exposed `drone-ci` service through a tab in Instruqt
+    - View the exposed `drone-ci` service in your browser
     - Explore the Drone CI dashboard
+
+    ## Duration
+
+    ~30 minutes
 tabs:
 - title: Terminal 1
   type: terminal

@@ -8,12 +8,17 @@ notes:
 - type: text
   contents: |-
     ## Objectives
+
     As part of the earlier challenge we,
     - Built Java Applications using Drone CI
     - Pushed the Java Application Container Image to our Private registry
     In this track, this is what you'll learn:
     - How to Continuously Deploy the Java Application using Argo CD by applying GitOps principles
     - What are are the strategies to do rolling updates using Argo CD
+
+    ## Duration
+
+    ~30 minutes
 tabs:
 - title: Terminal 1
   type: terminal

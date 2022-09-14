@@ -11,10 +11,14 @@ notes:
 
     ## Objectives
 
-    In this track, this is what you'll learn:
-    - Verify Registry Setup
+    In this challenge, this is what you'll learn:
+    - Verify Nexus Registry Setup
     - Make the private registry available to Kubernetes
     - Run tests to ensure you are able to push and pull from the registry
+
+    ## Duration
+
+    ~30 minutes
 tabs:
 - title: Terminal 1
   type: terminal

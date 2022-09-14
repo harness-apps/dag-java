@@ -9,9 +9,14 @@ notes:
   contents: |-
     ## Objectives
 
-    In this track, this is what you'll learn:
+    In this challenge, this is what you'll learn:
     - Build Java Applications using Drone CI
-    - Push the Java Application Container Image to our Private registry
+    - Push the Java Application Container Image to the registry
+
+    ## Duration
+
+    ~30 minutes
+
 tabs:
 - title: Terminal 1
   type: terminal

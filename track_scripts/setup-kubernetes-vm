@@ -93,7 +93,7 @@ direnv allow .
 # GITEA_DOMAIN="kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950"
 git config --global user.name 'user-01'
 git config --global user.email 'user-01@example.com'
-# git config credential.helper store
+git config --global credential.helper store
 
 # repos=("dag-stack.git" "quarkus-springboot-demo.git" "quarkus-springboot-demo-gitops.git" "dag-setup-verifier.git" )
 
