@@ -4,7 +4,7 @@ type: track
 title: DRAG Stack Workshop
 teaser: Build Your Own Open Source GitOps Delivery platform with Argo CD, Drone CI & LitmusChaos.
 description: |-
-  Workshop on how to build your Open Source GitOps Delivery platform using [Argo CD](https://argo-cd.readthedocs.io/), a custom container registry of your choice, [Drone CI ](https://drone.io) and any git.
+  This workshop walks you through the steps to build your Open Source GitOps software delivery platform using Drone CI, Argo CD, and a Git repository and container registry of your choice ... which will run on your own servers or on your laptop.
 
 icon: https://cdn.instruqt.com/assets/templates/kubernetes.png
 tags:
