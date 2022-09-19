@@ -31,7 +31,7 @@ tabs:
   path: /
   url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30950
   new_window: true
-- title: Litmux
+- title: Litmus
   type: website
   path: /
   url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30987
