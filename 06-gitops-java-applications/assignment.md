@@ -38,6 +38,11 @@ tabs:
   path: /
   url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30980
   new_window: true
+- title: Litmus
+  type: website
+  path: /
+  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30987
+  new_window: true
 - title: Terminal 2
   type: terminal
   hostname: kubernetes-vm

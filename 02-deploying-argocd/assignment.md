@@ -42,11 +42,6 @@ tabs:
   path: /
   url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30980
   new_window: true
-- title: Litmus
-  type: website
-  path: /
-  url: http://kubernetes-vm.${_SANDBOX_ID}.instruqt.io:30987
-  new_window: true
 - title: Terminal 2
   type: terminal
   hostname: kubernetes-vm
@@ -157,7 +152,7 @@ argocd app sync dag-apps
 
 A successful Argo CD deployment of apps should look as shown below,
 
-![ArgoCD Apps](../assets/dag_apps.png)
+![ArgoCD Apps](../assets/drag_apps.png)
 
 ✅ Validate Drone Setup
 =======================
