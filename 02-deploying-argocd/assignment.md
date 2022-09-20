@@ -152,7 +152,7 @@ argocd app sync dag-apps
 
 A successful Argo CD deployment of apps should look as shown below,
 
-![ArgoCD Apps](../assets/dag_apps.png)
+![ArgoCD Apps](../assets/drag_apps.png)
 
 ✅ Validate Drone Setup
 =======================
