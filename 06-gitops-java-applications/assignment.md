@@ -116,7 +116,7 @@ envsubst < "$APP_GITOPS_HOME/helm_vars/values.tpl.yaml" > "$APP_GITOPS_HOME/helm
 Commit and push the code to git repo,
 
 ```shell
-git commit -a -m "Init GitOps"
+git commit --allow-empty -m "Init GitOps"
 git push origin ${QSBD_GITOPS_GIT_REV}
 ```
 
