@@ -83,6 +83,7 @@ envsubst < $DAG_HOME/helm_vars/argocd/values.yaml |\
   helm upgrade --install argocd argo/argo-cd \
     --create-namespace \
     --namespace=argocd \
+    --version 5.4.7 \
     --values - \
     --wait
 ```
