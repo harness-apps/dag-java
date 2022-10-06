@@ -93,6 +93,7 @@ export DRONE_TOKEN="your drone token from drone account settings page"
 ```
 
 > **TIP**: You can copy the `.envrc.local` from `$GIT_REPOS_HOME/dag-stack.git`, as we have already copied the token from drone account settings page.
+>
 > ```shell
 > cp $GIT_REPOS_HOME/dag-stack/.envrc.local .
 > ```
@@ -120,11 +121,11 @@ kubectl run -i --tty busybox --image=busybox --restart=Never -- cat /etc/resolv.
 
 You should see output similar to this:
 
-<pre>
+&lt;pre&gt;
 search default.svc.cluster.local svc.cluster.local cluster.local pguvupthd4vq.svc.cluster.local c.instruqt-prod.internal google.internal
 nameserver 10.43.0.10
 options ndots:5
-</pre>
+&lt;/pre&gt;
 
 Here, `10.43.0.10` is the nameserver.
 
@@ -141,8 +142,9 @@ ifconfig | grep cni
 
 The command should show an output like:
 
-<pre>cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
-</pre>
+&lt;pre&gt;
+cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
+&lt;/pre&gt;
 
 Update the value as per the `mtu` value shown in the output of the command.
 
@@ -203,7 +205,9 @@ Drone supports multiple methods of managing secrets. Here we will use `drone enc
 
 You should see output similar to this:
 
-<pre>---
+&lt;pre&gt;
+
+---
 kind: secret
 name: image_registry_user
 data: jK/T9GzbNyxFmjlZhB/pgb6Kykm/ynGah4IPRXJTGn5w
@@ -212,7 +216,7 @@ data: jK/T9GzbNyxFmjlZhB/pgb6Kykm/ynGah4IPRXJTGn5w
 kind: secret
 name: image_registry_password
 data: 1OaeL3iqFVv2nEM5v8dNWux+eTXwjanbB5A60g4lq18uQJ61
-</pre>
+&lt;/pre&gt;
 
 Commit and push the code to see the build trigger
 
@@ -228,6 +232,7 @@ Check the build status in the Drone Dashboard,
 
 🏁 Finish
 =========
+
 **Congratulations**!!! You are now a GitOpsian. Add other projects of yours and keep rocking with Drone CI and Argo CD.
 
 Few applications that you can try with this stack,
