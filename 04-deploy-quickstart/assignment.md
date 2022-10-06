@@ -121,11 +121,11 @@ kubectl run -i --tty busybox --image=busybox --restart=Never -- cat /etc/resolv.
 
 You should see output similar to this:
 
-&lt;pre&gt;
+<pre>
 search default.svc.cluster.local svc.cluster.local cluster.local pguvupthd4vq.svc.cluster.local c.instruqt-prod.internal google.internal
 nameserver 10.43.0.10
 options ndots:5
-&lt;/pre&gt;
+</pre>
 
 Here, `10.43.0.10` is the nameserver.
 
@@ -142,9 +142,9 @@ ifconfig | grep cni
 
 The command should show an output like:
 
-&lt;pre&gt;
-cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1410
-&lt;/pre&gt;
+<pre>
+cni0: flags=4163&lt;sUP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1410
+</pre>
 
 Update the value as per the `mtu` value shown in the output of the command.
 
@@ -205,8 +205,7 @@ Drone supports multiple methods of managing secrets. Here we will use `drone enc
 
 You should see output similar to this:
 
-&lt;pre&gt;
-
+<pre>
 ---
 kind: secret
 name: image_registry_user
@@ -216,7 +215,7 @@ data: jK/T9GzbNyxFmjlZhB/pgb6Kykm/ynGah4IPRXJTGn5w
 kind: secret
 name: image_registry_password
 data: 1OaeL3iqFVv2nEM5v8dNWux+eTXwjanbB5A60g4lq18uQJ61
-&lt;/pre&gt;
+</pre>
 
 Commit and push the code to see the build trigger
 

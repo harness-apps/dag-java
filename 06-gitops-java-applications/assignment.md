@@ -141,11 +141,11 @@ kubectl get pods -n demo-apps
 
 The command should show an output like,
 
-&lt;pre&gt;
+<pre>
 NAME                          READY   STATUS    RESTARTS   AGE
 fruits-api-55dcf4f9d7-sgwrq   1/1     Running   0          3m41s
 postgresql-75979fccb6-gqkwf   1/1     Running   0          3m41s
-&lt;/pre&gt;
+</pre>
 
 Let us check the services,
 
@@ -155,11 +155,11 @@ kubectl get svc -n demo-apps
 
 The command should show an output like,
 
-&lt;pre&gt;
+<pre>
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 fruits-api   ClusterIP   10.43.147.230   &lt;none&gt;        8080/TCP         4m51s
 postgresql   NodePort    10.43.7.161     &lt;none&gt;        5432:32416/TCP   4m51s
-&lt;/pre&gt;
+</pre>
 
 Let port-forward the service `fruits-api` allowing us to access the service from the CLI,
 
@@ -175,7 +175,7 @@ http :8080/
 
 The command should return a response like,
 
-&lt;pre&gt;
+<pre>
 HTTP/1.1 200
 Connection: keep-alive
 Content-Length: 35
@@ -184,7 +184,7 @@ Date: Mon, 22 Aug 2022 09:06:15 GMT
 Keep-Alive: timeout=60
 
 Hello from Captain Canary!!🐥🚀
-&lt;/pre&gt;
+</pre>
 
 Run the following command and make a note of the image **sha256** digest,
 

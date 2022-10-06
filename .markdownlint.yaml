@@ -5,3 +5,4 @@ header-style:
   style: setext_with_atx_closed
 heading-style:
   style: setext_with_atx_closed
+no-inline-html: false
