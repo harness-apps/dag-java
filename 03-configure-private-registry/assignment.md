@@ -77,7 +77,7 @@ kubectl get pods -n kube-system
 
 The output of the command should be like
 
-&lt;pre&gt;
+<pre>
 NAME                                      READY   STATUS      RESTARTS   AGE
 local-path-provisioner-7b7dc8d6f5-p8jdb   1/1     Running     0          75m
 coredns-b96499967-8vm62                   1/1     Running     0          75m
@@ -86,7 +86,7 @@ helm-install-traefik-4fqwf                0/1     Completed   1          75m
 svclb-traefik-89547357-7xclt              2/2     Running     0          75m
 metrics-server-668d979685-865cp           1/1     Running     0          75m
 traefik-7cd4fcff68-zmcn9                  1/1     Running     0          75m
-&lt;/pre&gt;
+</pre>
 
 Verify Registry Setup
 =====================

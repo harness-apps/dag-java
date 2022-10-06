@@ -112,12 +112,12 @@ Listing the git remotes,
 git remote -v
 ```
 
-&lt;pre&gt;
+<pre>
 origin  ${GITEA_URL}/user-01/dag-stack.git (fetch)
 origin  ${GITEA_URL}/user-01/dag-stack.git (push)
 upstream        https://github.com/harness-apps/dag-stack.git (fetch)
 upstream        https://github.com/harness-apps/dag-stack.git (push)
-&lt;/pre&gt;
+</pre>
 
 Push the current "${DAG_TARGET_VERSION}" branch to `origin`. Enter `user-01` for the username and `user-01@123` for the password (you should not be prompted again during this track).
 
